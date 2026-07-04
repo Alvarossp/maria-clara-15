@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="f1-petal-peach" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#FBE3D2"/>
+      <stop offset="55%" stop-color="#F4C9A8"/>
+      <stop offset="100%" stop-color="#E8AE85"/>
+    </radialGradient>
+    <radialGradient id="f1-petal-blue" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#EAF2FA"/>
+      <stop offset="55%" stop-color="#DCE8F3"/>
+      <stop offset="100%" stop-color="#AFC9E0"/>
+    </radialGradient>
+    <radialGradient id="f1-center" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F3DFA8"/>
+      <stop offset="100%" stop-color="#C9A66B"/>
+    </radialGradient>
+    <filter id="f1-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+  </defs>
+
+  <!-- Folhas -->
+  <g opacity="0.9">
+    <path d="M150 235 C120 245 95 232 84 205 C112 205 135 214 150 235 Z" fill="#BFD6A8" filter="url(#f1-soft)"/>
+    <path d="M155 240 C185 252 212 240 224 212 C195 210 172 220 155 240 Z" fill="#A9C793" filter="url(#f1-soft)"/>
+    <path d="M150 200 L150 250" stroke="#8FAE79" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Camada externa de pétalas (pêssego) -->
+  <g filter="url(#f1-soft)">
+    <ellipse cx="150" cy="95"  rx="34" ry="46" fill="url(#f1-petal-peach)" transform="rotate(0 150 150)"/>
+    <ellipse cx="150" cy="95"  rx="34" ry="46" fill="url(#f1-petal-peach)" transform="rotate(51 150 150)"/>
+    <ellipse cx="150" cy="95"  rx="34" ry="46" fill="url(#f1-petal-peach)" transform="rotate(102 150 150)"/>
+    <ellipse cx="150" cy="95"  rx="34" ry="46" fill="url(#f1-petal-peach)" transform="rotate(153 150 150)"/>
+    <ellipse cx="150" cy="95"  rx="34" ry="46" fill="url(#f1-petal-peach)" transform="rotate(204 150 150)"/>
+    <ellipse cx="150" cy="95"  rx="34" ry="46" fill="url(#f1-petal-peach)" transform="rotate(255 150 150)"/>
+    <ellipse cx="150" cy="95"  rx="34" ry="46" fill="url(#f1-petal-peach)" transform="rotate(306 150 150)"/>
+  </g>
+
+  <!-- Camada intermediária (azul bebê) -->
+  <g filter="url(#f1-soft)" opacity="0.95">
+    <ellipse cx="150" cy="112" rx="26" ry="36" fill="url(#f1-petal-blue)" transform="rotate(20 150 150)"/>
+    <ellipse cx="150" cy="112" rx="26" ry="36" fill="url(#f1-petal-blue)" transform="rotate(92 150 150)"/>
+    <ellipse cx="150" cy="112" rx="26" ry="36" fill="url(#f1-petal-blue)" transform="rotate(164 150 150)"/>
+    <ellipse cx="150" cy="112" rx="26" ry="36" fill="url(#f1-petal-blue)" transform="rotate(236 150 150)"/>
+    <ellipse cx="150" cy="112" rx="26" ry="36" fill="url(#f1-petal-blue)" transform="rotate(308 150 150)"/>
+  </g>
+
+  <!-- Camada interna (pêssego claro) -->
+  <g filter="url(#f1-soft)">
+    <ellipse cx="150" cy="128" rx="18" ry="24" fill="url(#f1-petal-peach)" transform="rotate(10 150 150)"/>
+    <ellipse cx="150" cy="128" rx="18" ry="24" fill="url(#f1-petal-peach)" transform="rotate(82 150 150)"/>
+    <ellipse cx="150" cy="128" rx="18" ry="24" fill="url(#f1-petal-peach)" transform="rotate(154 150 150)"/>
+    <ellipse cx="150" cy="128" rx="18" ry="24" fill="url(#f1-petal-peach)" transform="rotate(226 150 150)"/>
+    <ellipse cx="150" cy="128" rx="18" ry="24" fill="url(#f1-petal-peach)" transform="rotate(298 150 150)"/>
+  </g>
+
+  <!-- Centro dourado -->
+  <circle cx="150" cy="150" r="14" fill="url(#f1-center)"/>
+  <g fill="#8A6A3C" opacity="0.7">
+    <circle cx="144" cy="146" r="1.6"/>
+    <circle cx="156" cy="146" r="1.6"/>
+    <circle cx="150" cy="156" r="1.6"/>
+    <circle cx="142" cy="155" r="1.6"/>
+    <circle cx="158" cy="155" r="1.6"/>
+  </g>
+
+  <!-- Botão pequeno secundário -->
+  <g transform="translate(205 175) scale(0.55)" opacity="0.9">
+    <ellipse cx="0" cy="-20" rx="20" ry="26" fill="url(#f1-petal-blue)"/>
+    <ellipse cx="-17" cy="0" rx="20" ry="26" fill="url(#f1-petal-peach)" transform="rotate(-40)"/>
+    <ellipse cx="17" cy="0" rx="20" ry="26" fill="url(#f1-petal-peach)" transform="rotate(40)"/>
+    <circle cx="0" cy="-6" r="9" fill="url(#f1-center)"/>
+  </g>
+</svg>

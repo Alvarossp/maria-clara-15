@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#F7E9DE">
+  <meta name="description" content="Filtro comemorativo interativo dos 15 anos de Maria Clara">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Maria Clara 15">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <title>Maria Clara 15 Anos</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
+
+  <!-- Google Fonts: Parisienne (assinatura), Playfair Display (display serifada), Cormorant Garamond (corpo elegante) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       TELA DE CARREGAMENTO
+       Exibida enquanto fontes, SVGs e câmera são inicializados
+  ============================================================ -->
+  <div id="loading-screen" class="screen" aria-live="polite">
+    <div class="loading-content">
+      <img src="brasao-mc.svg" alt="Brasão Maria Clara" class="loading-crest" id="loading-crest">
+      <p class="loading-title">Maria Clara</p>
+      <p class="loading-subtitle">quinze anos</p>
+      <div class="loading-bar-track">
+        <div class="loading-bar-fill" id="loading-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TELA DE PERMISSÃO DE CÂMERA NEGADA
+  ============================================================ -->
+  <div id="permission-screen" class="screen hidden">
+    <div class="permission-content">
+      <img src="flor-01.svg" alt="" class="permission-flower" aria-hidden="true">
+      <h1 class="permission-title">Precisamos da sua câmera</h1>
+      <p class="permission-text">
+        Para viver esta experiência, permita o acesso à câmera do seu celular.
+      </p>
+      <button id="btn-request-permission" class="btn-elegant" type="button">
+        Permitir câmera
+      </button>
+      <p class="permission-hint" id="permission-hint"></p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PALCO PRINCIPAL — CÂMERA + OVERLAY DECORATIVO + CANVAS
+  ============================================================ -->
+  <main id="stage" class="screen hidden" aria-label="Experiência da câmera">
+
+    <!-- Caixa de câmera com proporção fixa 9:16 (calculada via JS) —
+         garante que o que a convidada vê é exatamente o que será
+         gravado no Canvas de captura (WYSIWYG real) -->
+    <div id="camera-frame" class="camera-frame">
+
+      <!-- Vídeo da câmera (preview ao vivo) -->
+      <video id="camera-video" playsinline autoplay muted></video>
+
+      <!-- Camada decorativa animada, sincronizada visualmente com o preview -->
+      <div id="decor-layer" class="decor-layer" aria-hidden="true">
+
+        <!-- Confetes caindo -->
+        <div class="confetti-field" id="confetti-field"></div>
+
+        <!-- Glitter dourado cintilante -->
+        <div class="glitter-field" id="glitter-field"></div>
+
+        <!-- Flores aquareladas nos cantos -->
+        <img src="flor-01.svg" alt="" class="deco-flower deco-flower--top-left sway-slow">
+        <img src="flor-02.svg" alt="" class="deco-flower deco-flower--bottom-right sway-slow-reverse">
+
+        <!-- Balões delicados -->
+        <img src="balao-01.svg" alt="" class="deco-balloon deco-balloon--left float-balloon">
+        <img src="balao-02.svg" alt="" class="deco-balloon deco-balloon--right float-balloon-reverse">
+
+        <!-- Moldura com brasão e textos -->
+        <div class="frame-top">
+          <img src="brasao-mc.svg" alt="Brasão MC" class="frame-crest">
+          <p class="frame-title">Maria Clara</p>
+          <p class="frame-subtitle">15 anos</p>
+        </div>
+
+        <div class="frame-bottom">
+          <span class="frame-date" id="frame-date"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Canvas oculto usado apenas para composição/captura final -->
+    <canvas id="capture-canvas" width="1080" height="1920" aria-hidden="true"></canvas>
+
+    <!-- Barra de controles inferior -->
+    <div class="controls-bar">
+      <button id="btn-switch-camera" class="btn-icon" type="button" aria-label="Alternar câmera">
+        <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
+          <path d="M12 5V2L7 7l5 5V9c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0020 15c0-4.42-3.58-8-8-8zm-6 8c0-1.01.25-1.97.7-2.8L5.24 8.74A7.93 7.93 0 004 13c0 4.42 3.58 8 8 8v3l5-5-5-5v3c-3.31 0-6-2.69-6-6z"/>
+        </svg>
+      </button>
+
+      <button id="btn-capture" class="btn-capture" type="button" aria-label="Capturar foto">
+        <span class="btn-capture-ring"></span>
+        <span class="btn-capture-core"></span>
+      </button>
+
+      <button id="btn-info" class="btn-icon" type="button" aria-label="Sobre a festa">
+        <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
+          <path d="M11 7h2v2h-2V7zm0 4h2v6h-2v-6zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+        </svg>
+      </button>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       TELA DE RESULTADO — FOTO CAPTURADA
+  ============================================================ -->
+  <div id="result-screen" class="screen hidden">
+    <div class="result-frame">
+      <img id="result-image" src="" alt="Foto capturada com moldura de Maria Clara 15 anos">
+    </div>
+
+    <div class="result-controls">
+      <button id="btn-retake" class="btn-outline" type="button">
+        Refazer
+      </button>
+      <button id="btn-share" class="btn-elegant" type="button">
+        Compartilhar
+      </button>
+      <button id="btn-download" class="btn-outline hidden" type="button">
+        Baixar foto
+      </button>
+    </div>
+
+    <p class="result-hint">A foto já foi salva na galeria do seu celular</p>
+  </div>
+
+  <!-- ============================================================
+       MODAL DE INFORMAÇÕES SOBRE A FESTA
+  ============================================================ -->
+  <div id="info-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="info-title">
+    <div class="modal-backdrop" id="info-backdrop"></div>
+    <div class="modal-card">
+      <img src="brasao-mc.svg" alt="" class="modal-crest" aria-hidden="true">
+      <h2 id="info-title" class="modal-title">Meus 15 anos</h2>
+      <p class="modal-text">
+        Obrigada por celebrar esta noite comigo. Tire uma foto, guarde a lembrança e compartilhe o carinho.
+      </p>
+      <button id="btn-close-info" class="btn-elegant" type="button">Fechar</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       TOAST DE FEEDBACK (erros, avisos, confirmações)
+  ============================================================ -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

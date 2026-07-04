@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="f2-blue" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#EAF2FA"/>
+      <stop offset="55%" stop-color="#DCE8F3"/>
+      <stop offset="100%" stop-color="#9FBEDA"/>
+    </radialGradient>
+    <radialGradient id="f2-peach" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#FDF0E6"/>
+      <stop offset="55%" stop-color="#F4C9A8"/>
+      <stop offset="100%" stop-color="#DFA179"/>
+    </radialGradient>
+    <radialGradient id="f2-center" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F3DFA8"/>
+      <stop offset="100%" stop-color="#C9A66B"/>
+    </radialGradient>
+    <filter id="f2-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+  </defs>
+
+  <!-- Ramos e folhas de base -->
+  <g stroke="#8FAE79" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M150 260 C150 220 140 190 118 165"/>
+    <path d="M150 260 C150 215 165 185 195 158"/>
+    <path d="M150 260 C150 210 152 175 152 140"/>
+  </g>
+  <g opacity="0.9">
+    <path d="M118 200 C95 205 80 195 75 175 C98 172 114 182 118 200 Z" fill="#BFD6A8" filter="url(#f2-soft)"/>
+    <path d="M190 190 C213 192 228 180 232 160 C209 160 194 172 190 190 Z" fill="#A9C793" filter="url(#f2-soft)"/>
+    <path d="M150 175 C140 160 140 142 152 128 C162 143 160 162 150 175 Z" fill="#BFD6A8" filter="url(#f2-soft)"/>
+  </g>
+
+  <!-- Flor principal (azul) à esquerda -->
+  <g filter="url(#f2-soft)" transform="translate(112 128)">
+    <ellipse cx="0" cy="-30" rx="22" ry="30" fill="url(#f2-blue)" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-30" rx="22" ry="30" fill="url(#f2-blue)" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-30" rx="22" ry="30" fill="url(#f2-blue)" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-30" rx="22" ry="30" fill="url(#f2-blue)" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-30" rx="22" ry="30" fill="url(#f2-blue)" transform="rotate(288)"/>
+    <circle cx="0" cy="0" r="11" fill="url(#f2-center)"/>
+  </g>
+
+  <!-- Flor principal (pêssego) à direita — maior, foco visual -->
+  <g filter="url(#f2-soft)" transform="translate(196 150)">
+    <ellipse cx="0" cy="-38" rx="27" ry="38" fill="url(#f2-peach)" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-38" rx="27" ry="38" fill="url(#f2-peach)" transform="rotate(51)"/>
+    <ellipse cx="0" cy="-38" rx="27" ry="38" fill="url(#f2-peach)" transform="rotate(102)"/>
+    <ellipse cx="0" cy="-38" rx="27" ry="38" fill="url(#f2-peach)" transform="rotate(153)"/>
+    <ellipse cx="0" cy="-38" rx="27" ry="38" fill="url(#f2-peach)" transform="rotate(204)"/>
+    <ellipse cx="0" cy="-38" rx="27" ry="38" fill="url(#f2-peach)" transform="rotate(255)"/>
+    <ellipse cx="0" cy="-38" rx="27" ry="38" fill="url(#f2-peach)" transform="rotate(306)"/>
+    <g filter="url(#f2-soft)">
+      <ellipse cx="0" cy="-20" rx="17" ry="22" fill="url(#f2-blue)" transform="rotate(15)"/>
+      <ellipse cx="0" cy="-20" rx="17" ry="22" fill="url(#f2-blue)" transform="rotate(87)"/>
+      <ellipse cx="0" cy="-20" rx="17" ry="22" fill="url(#f2-blue)" transform="rotate(159)"/>
+      <ellipse cx="0" cy="-20" rx="17" ry="22" fill="url(#f2-blue)" transform="rotate(231)"/>
+      <ellipse cx="0" cy="-20" rx="17" ry="22" fill="url(#f2-blue)" transform="rotate(303)"/>
+    </g>
+    <circle cx="0" cy="0" r="13" fill="url(#f2-center)"/>
+    <g fill="#8A6A3C" opacity="0.7">
+      <circle cx="-5" cy="-3" r="1.6"/>
+      <circle cx="6" cy="-3" r="1.6"/>
+      <circle cx="0" cy="6" r="1.6"/>
+    </g>
+  </g>
+
+  <!-- Botão fechado no topo -->
+  <g filter="url(#f2-soft)" transform="translate(152 108) scale(0.6)">
+    <ellipse cx="0" cy="-16" rx="16" ry="22" fill="url(#f2-peach)"/>
+    <ellipse cx="-13" cy="0" rx="16" ry="22" fill="url(#f2-blue)" transform="rotate(-45)"/>
+    <ellipse cx="13" cy="0" rx="16" ry="22" fill="url(#f2-blue)" transform="rotate(45)"/>
+    <circle cx="0" cy="-4" r="7" fill="url(#f2-center)"/>
+  </g>
+</svg>
