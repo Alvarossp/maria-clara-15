@@ -17,14 +17,14 @@ const APP_SHELL = [
   './style.css',
   './script.js',
   './manifest.json',
-  './assets/svg/brasao-mc.svg',
-  './assets/svg/flor-01.svg',
-  './assets/svg/flor-02.svg',
-  './assets/svg/balao-01.svg',
-  './assets/svg/balao-02.svg',
-  './assets/icons/icon-192.png',
-  './assets/icons/icon-512.png',
-  './assets/icons/icon-180.png'
+  './brasao-mc.svg',
+  './flor-01.svg',
+  './flor-02.svg',
+  './balao-01.svg',
+  './balao-02.svg',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-180.png'
 ];
 
 // Fontes do Google Fonts usadas no app — cacheadas separadamente pois

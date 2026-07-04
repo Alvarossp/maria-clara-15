@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320" width="200" height="320">
+  <defs>
+    <radialGradient id="b1-blue" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#F0F6FC"/>
+      <stop offset="45%" stop-color="#DCE8F3"/>
+      <stop offset="100%" stop-color="#9FBEDA"/>
+    </radialGradient>
+    <radialGradient id="b1-peach" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#FDF0E6"/>
+      <stop offset="45%" stop-color="#F4C9A8"/>
+      <stop offset="100%" stop-color="#DFA179"/>
+    </radialGradient>
+    <linearGradient id="b1-string" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C9A66B"/>
+      <stop offset="100%" stop-color="#E8C97E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Barbantes -->
+  <path d="M75 190 C70 220 82 250 70 280" fill="none" stroke="url(#b1-string)" stroke-width="1.6" opacity="0.85"/>
+  <path d="M125 200 C132 228 118 255 128 285" fill="none" stroke="url(#b1-string)" stroke-width="1.6" opacity="0.85"/>
+
+  <!-- Laço dourado -->
+  <path d="M92 196 C88 202 88 210 96 214 C90 218 90 226 98 230" fill="none" stroke="url(#b1-string)" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- Balão traseiro (pêssego) -->
+  <g transform="translate(120 100)">
+    <ellipse cx="0" cy="0" rx="52" ry="64" fill="url(#b1-peach)"/>
+    <ellipse cx="-16" cy="-24" rx="14" ry="18" fill="#FFFFFF" opacity="0.45"/>
+    <path d="M0 64 L-8 78 L8 78 Z" fill="#DFA179"/>
+  </g>
+
+  <!-- Balão frontal (azul bebê) -->
+  <g transform="translate(78 88)">
+    <ellipse cx="0" cy="0" rx="58" ry="72" fill="url(#b1-blue)"/>
+    <ellipse cx="-18" cy="-28" rx="16" ry="20" fill="#FFFFFF" opacity="0.5"/>
+    <path d="M0 72 L-9 88 L9 88 Z" fill="#9FBEDA"/>
+  </g>
+</svg>

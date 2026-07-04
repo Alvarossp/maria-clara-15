@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <defs>
+    <linearGradient id="mc-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3DFA8"/>
+      <stop offset="45%" stop-color="#E8C97E"/>
+      <stop offset="100%" stop-color="#C9A66B"/>
+    </linearGradient>
+    <linearGradient id="mc-gold-soft" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F7E9C8"/>
+      <stop offset="100%" stop-color="#D8B87C"/>
+    </linearGradient>
+    <radialGradient id="mc-shield-fill" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#FBF3EA"/>
+      <stop offset="100%" stop-color="#F4E4D2"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Coroa de flores estilizada no topo -->
+  <g opacity="0.95">
+    <path d="M100 8 C104 16 108 20 116 21 C109 24 105 29 104 37 C102 29 97 24 90 21 C98 20 96 16 100 8 Z" fill="url(#mc-gold-soft)"/>
+    <circle cx="70" cy="24" r="5.5" fill="#F4C9A8"/>
+    <circle cx="130" cy="24" r="5.5" fill="#AFC9E0"/>
+    <circle cx="55" cy="34" r="4" fill="#AFC9E0"/>
+    <circle cx="145" cy="34" r="4" fill="#F4C9A8"/>
+    <path d="M55 34 C48 30 46 22 50 16" fill="none" stroke="url(#mc-gold)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M145 34 C152 30 154 22 150 16" fill="none" stroke="url(#mc-gold)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Escudo -->
+  <path d="M100 40
+           L150 55
+           L150 118
+           C150 158 128 184 100 198
+           C72 184 50 158 50 118
+           L50 55
+           Z"
+        fill="url(#mc-shield-fill)"
+        stroke="url(#mc-gold)"
+        stroke-width="3.5"/>
+
+  <!-- Linha interna de contorno -->
+  <path d="M100 48
+           L143 61
+           L143 118
+           C143 153 124 176 100 189
+           C76 176 57 153 57 118
+           L57 61
+           Z"
+        fill="none"
+        stroke="url(#mc-gold-soft)"
+        stroke-width="1.4"
+        opacity="0.85"/>
+
+  <!-- Monograma MC -->
+  <text x="100" y="128"
+        text-anchor="middle"
+        font-family="'Playfair Display', Georgia, serif"
+        font-size="58"
+        font-weight="600"
+        fill="url(#mc-gold)"
+        letter-spacing="2">MC</text>
+
+  <!-- Ramos laterais -->
+  <g stroke="url(#mc-gold)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M64 150 C58 158 58 168 64 176"/>
+    <path d="M64 150 L54 148 M62 160 L52 160 M64 170 L55 173"/>
+    <path d="M136 150 C142 158 142 168 136 176"/>
+    <path d="M136 150 L146 148 M138 160 L148 160 M136 170 L145 173"/>
+  </g>
+
+  <!-- Base com pequena estrela -->
+  <path d="M100 172 L103 180 L111 180 L104.5 185 L107 193 L100 188 L93 193 L95.5 185 L89 180 L97 180 Z"
+        fill="url(#mc-gold)" opacity="0.9"/>
+</svg>
