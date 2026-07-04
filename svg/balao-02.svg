@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320" width="200" height="320">
+  <defs>
+    <radialGradient id="b2-gold" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#FBF0D6"/>
+      <stop offset="45%" stop-color="#F3DFA8"/>
+      <stop offset="100%" stop-color="#C9A66B"/>
+    </radialGradient>
+    <radialGradient id="b2-blue" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#F0F6FC"/>
+      <stop offset="45%" stop-color="#DCE8F3"/>
+      <stop offset="100%" stop-color="#9FBEDA"/>
+    </radialGradient>
+    <radialGradient id="b2-peach" cx="35%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#FDF0E6"/>
+      <stop offset="45%" stop-color="#F4C9A8"/>
+      <stop offset="100%" stop-color="#DFA179"/>
+    </radialGradient>
+    <linearGradient id="b2-string" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C9A66B"/>
+      <stop offset="100%" stop-color="#E8C97E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Barbantes -->
+  <path d="M60 195 C55 222 66 248 56 278" fill="none" stroke="url(#b2-string)" stroke-width="1.5" opacity="0.85"/>
+  <path d="M100 205 C104 230 92 254 100 282" fill="none" stroke="url(#b2-string)" stroke-width="1.5" opacity="0.85"/>
+  <path d="M140 195 C146 222 134 248 144 278" fill="none" stroke="url(#b2-string)" stroke-width="1.5" opacity="0.85"/>
+
+  <!-- Laço dourado central -->
+  <path d="M92 200 C88 206 88 213 96 217 C90 221 90 228 98 232" fill="none" stroke="url(#b2-string)" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Balão dourado (fundo, centro) -->
+  <g transform="translate(100 92)">
+    <ellipse cx="0" cy="0" rx="46" ry="58" fill="url(#b2-gold)"/>
+    <ellipse cx="-14" cy="-22" rx="12" ry="16" fill="#FFFFFF" opacity="0.4"/>
+    <path d="M0 58 L-7 70 L7 70 Z" fill="#C9A66B"/>
+  </g>
+
+  <!-- Balão azul (esquerda) -->
+  <g transform="translate(58 108)">
+    <ellipse cx="0" cy="0" rx="42" ry="54" fill="url(#b2-blue)"/>
+    <ellipse cx="-13" cy="-20" rx="11" ry="14" fill="#FFFFFF" opacity="0.5"/>
+    <path d="M0 54 L-6 66 L6 66 Z" fill="#9FBEDA"/>
+  </g>
+
+  <!-- Balão pêssego (direita, mais à frente) -->
+  <g transform="translate(142 104)">
+    <ellipse cx="0" cy="0" rx="44" ry="56" fill="url(#b2-peach)"/>
+    <ellipse cx="-14" cy="-21" rx="12" ry="15" fill="#FFFFFF" opacity="0.5"/>
+    <path d="M0 56 L-7 68 L7 68 Z" fill="#DFA179"/>
+  </g>
+</svg>
