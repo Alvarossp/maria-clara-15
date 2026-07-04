@@ -1,0 +1,753 @@
+/* ==========================================================================
+   MARIA CLARA 15 — STYLE.CSS
+   Identidade visual: aquarela romântica-luxuosa
+   Paleta: azul bebê + pêssego + creme + dourado
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TOKENS DE DESIGN
+-------------------------------------------------------------------------- */
+:root {
+  /* Paleta */
+  --color-cream:        #FBF3EA;
+  --color-peach:        #F4C9A8;
+  --color-peach-soft:   #FBE3D2;
+  --color-blue-baby:    #AFC9E0;
+  --color-blue-soft:    #DCE8F3;
+  --color-gold:         #C9A66B;
+  --color-gold-bright:  #E8C97E;
+  --color-ink:          #4A3B33;
+  --color-ink-soft:     #6E5C50;
+  --color-white:        #FFFFFF;
+
+  /* Tipografia */
+  --font-signature: 'Parisienne', cursive;
+  --font-display:   'Playfair Display', serif;
+  --font-body:      'Cormorant Garamond', serif;
+
+  /* Layout */
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left:   env(safe-area-inset-left, 0px);
+  --safe-right:  env(safe-area-inset-right, 0px);
+
+  /* Movimento */
+  --ease-elegant: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast:   200ms;
+  --dur-medium: 500ms;
+  --dur-slow:   1200ms;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET E BASE
+-------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  touch-action: none;
+}
+
+/* Altura real de viewport em iOS/Android (evita barras dinâmicas cortando UI) */
+.screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. TELA DE CARREGAMENTO
+-------------------------------------------------------------------------- */
+#loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-peach-soft) 100%);
+  z-index: 100;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.loading-crest {
+  width: 88px;
+  height: 88px;
+  margin-bottom: 0.5rem;
+  animation: crest-breathe 2.4s var(--ease-elegant) infinite;
+}
+
+@keyframes crest-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50%      { transform: scale(1.06); opacity: 1; }
+}
+
+.loading-title {
+  font-family: var(--font-signature);
+  font-size: 2.8rem;
+  color: var(--color-ink);
+  line-height: 1;
+}
+
+.loading-subtitle {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.loading-bar-track {
+  width: 160px;
+  height: 2px;
+  background: rgba(201, 166, 107, 0.25);
+  border-radius: 2px;
+  margin-top: 1.25rem;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--color-gold);
+  border-radius: 2px;
+  transition: width var(--dur-medium) var(--ease-elegant);
+}
+
+/* --------------------------------------------------------------------------
+   4. TELA DE PERMISSÃO
+-------------------------------------------------------------------------- */
+#permission-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cream);
+  z-index: 90;
+}
+
+.permission-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 380px;
+}
+
+.permission-flower {
+  width: 96px;
+  height: 96px;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.permission-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--color-ink);
+}
+
+.permission-text {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+.permission-hint {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+  min-height: 1.2em;
+}
+
+/* --------------------------------------------------------------------------
+   5. BOTÕES
+-------------------------------------------------------------------------- */
+.btn-elegant {
+  padding: 0.9rem 2.4rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-gold-bright), var(--color-gold));
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  box-shadow: 0 8px 24px rgba(201, 166, 107, 0.35);
+  transition: transform var(--dur-fast) var(--ease-elegant), box-shadow var(--dur-fast) var(--ease-elegant);
+}
+
+.btn-elegant:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 12px rgba(201, 166, 107, 0.3);
+}
+
+.btn-elegant:disabled,
+.btn-outline:disabled,
+.btn-icon:disabled,
+.btn-capture:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.btn-outline {
+  padding: 0.85rem 2.2rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1.5px solid var(--color-gold);
+  color: var(--color-gold);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform var(--dur-fast) var(--ease-elegant), background var(--dur-fast) var(--ease-elegant);
+}
+
+.btn-outline:active {
+  transform: scale(0.96);
+  background: rgba(201, 166, 107, 0.08);
+}
+
+.btn-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform var(--dur-fast) var(--ease-elegant), background var(--dur-fast) var(--ease-elegant);
+}
+
+.btn-icon:active {
+  transform: scale(0.9);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.icon-svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-white);
+}
+
+/* --------------------------------------------------------------------------
+   6. PALCO PRINCIPAL — CÂMERA
+-------------------------------------------------------------------------- */
+#stage {
+  background: #000;
+  z-index: 10;
+}
+
+/* Caixa de câmera com proporção fixa 9:16.
+   O tamanho em pixels é calculado e aplicado via JS (fitCameraFrame),
+   garantindo que a área visível seja idêntica à área capturada no
+   Canvas (1080x1920) em QUALQUER proporção de tela — sem isso, o que
+   a convidada vê no preview não bate com a foto final em aparelhos
+   que não sejam exatamente 9:16 (a maioria não é). */
+.camera-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  background: #000;
+  /* largura/altura reais definidas via JS em px */
+}
+
+#camera-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  /* Espelhamento aplicado via JS somente quando câmera frontal está ativa */
+}
+
+#camera-video.mirrored {
+  transform: scaleX(-1);
+}
+
+#capture-canvas {
+  position: absolute;
+  top: -99999px;
+  left: -99999px;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. CAMADA DECORATIVA
+-------------------------------------------------------------------------- */
+.decor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Flores aquareladas nos cantos.
+   Medidas em % (relativas ao próprio .camera-frame) em vez de vw/vh
+   (relativas à tela inteira) — essencial para que a decoração fique
+   na mesma posição relativa tanto no preview quanto na foto capturada,
+   já que o camera-frame pode ser menor que a tela (letterbox). */
+.deco-flower {
+  position: absolute;
+  width: 30%;
+  max-width: 180px;
+  filter: drop-shadow(0 6px 14px rgba(74, 59, 51, 0.18));
+}
+
+.deco-flower--top-left {
+  top: calc(var(--safe-top) + 2%);
+  left: -6%;
+  transform-origin: top left;
+}
+
+.deco-flower--bottom-right {
+  bottom: calc(var(--safe-bottom) + 14%);
+  right: -6%;
+  transform-origin: bottom right;
+}
+
+@keyframes sway-slow {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50%      { transform: rotate(2deg) translateY(-6px); }
+}
+
+@keyframes sway-slow-reverse {
+  0%, 100% { transform: rotate(3deg) translateY(0); }
+  50%      { transform: rotate(-2deg) translateY(6px); }
+}
+
+.sway-slow          { animation: sway-slow 6.5s ease-in-out infinite; }
+.sway-slow-reverse   { animation: sway-slow-reverse 7.2s ease-in-out infinite; }
+
+/* Balões delicados */
+.deco-balloon {
+  position: absolute;
+  width: 18%;
+  max-width: 110px;
+  bottom: 22%;
+  filter: drop-shadow(0 10px 16px rgba(74, 59, 51, 0.15));
+}
+
+.deco-balloon--left  { left: 3%; }
+.deco-balloon--right { right: 3%; }
+
+@keyframes float-balloon {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-18px) rotate(2deg); }
+}
+
+@keyframes float-balloon-reverse {
+  0%, 100% { transform: translateY(-10px) rotate(2deg); }
+  50%      { transform: translateY(6px) rotate(-2deg); }
+}
+
+.float-balloon         { animation: float-balloon 5.5s ease-in-out infinite; }
+.float-balloon-reverse { animation: float-balloon-reverse 6.1s ease-in-out infinite; }
+
+/* Moldura superior */
+.frame-top {
+  position: absolute;
+  top: var(--safe-top);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.75rem;
+  background: linear-gradient(180deg, rgba(74, 59, 51, 0.28) 0%, rgba(74, 59, 51, 0) 100%);
+  padding-bottom: 3rem;
+}
+
+.frame-crest {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0.3rem;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.frame-title {
+  font-family: var(--font-signature);
+  font-size: 2.1rem;
+  color: var(--color-white);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 1;
+}
+
+.frame-subtitle {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-gold-bright);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  margin-top: 0.2rem;
+}
+
+/* Moldura inferior */
+.frame-bottom {
+  position: absolute;
+  bottom: calc(var(--safe-bottom) + 128px);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.frame-date {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-white);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   8. GLITTER E CONFETES (animações em CSS puro — leves, sem JS por frame)
+-------------------------------------------------------------------------- */
+.glitter-field,
+.confetti-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.glitter-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-gold-bright);
+  box-shadow: 0 0 6px 1px rgba(232, 201, 126, 0.9);
+  opacity: 0;
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  50%      { opacity: 1; transform: scale(1.2); }
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -5%;
+  width: 8px;
+  height: 14px;
+  opacity: 0.9;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 1px;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.95;
+  }
+  100% {
+    /* IMPORTANTE: transform:translate() com % é relativo ao próprio
+       elemento, não ao contêiner — por isso usamos --frame-height,
+       uma variável em px definida via JS com a altura real do
+       camera-frame (fitCameraFrame em script.js), garantindo que o
+       confete percorra toda a tela em qualquer proporção de aparelho. */
+    transform: translateY(calc(var(--frame-height, 100vh) * 1.15)) translateX(var(--drift, 20px)) rotate(540deg);
+    opacity: 0.85;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. BARRA DE CONTROLES
+-------------------------------------------------------------------------- */
+.controls-bar {
+  position: absolute;
+  bottom: calc(var(--safe-bottom) + 2.2rem);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  pointer-events: none;
+}
+
+.controls-bar > * {
+  pointer-events: auto;
+}
+
+.btn-capture {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-capture-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid var(--color-white);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.btn-capture-core {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold-bright), var(--color-gold));
+  transition: transform var(--dur-fast) var(--ease-elegant);
+}
+
+.btn-capture:active .btn-capture-core {
+  transform: scale(0.82);
+}
+
+/* --------------------------------------------------------------------------
+   10. TELA DE RESULTADO
+-------------------------------------------------------------------------- */
+#result-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: linear-gradient(180deg, var(--color-ink) 0%, #2A211C 100%);
+  z-index: 50;
+  padding: calc(var(--safe-top) + 1rem) 1.5rem calc(var(--safe-bottom) + 1.5rem);
+}
+
+.result-frame {
+  flex: 1;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+#result-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  object-fit: contain;
+}
+
+.result-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.result-hint {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   11. MODAL DE INFORMAÇÕES
+-------------------------------------------------------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 59, 51, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fade-in var(--dur-fast) var(--ease-elegant);
+}
+
+.modal-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  background: var(--color-cream);
+  border-radius: 24px;
+  padding: 2.2rem 1.8rem;
+  max-width: 340px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  animation: modal-pop var(--dur-medium) var(--ease-elegant);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modal-pop {
+  from { opacity: 0; transform: scale(0.9) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-crest {
+  width: 44px;
+  height: 44px;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-ink);
+}
+
+.modal-text {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   12. TOAST
+-------------------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--safe-bottom) + 1.5rem);
+  transform: translateX(-50%) translateY(20px);
+  z-index: 300;
+  background: rgba(74, 59, 51, 0.92);
+  color: var(--color-white);
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-elegant), transform var(--dur-fast) var(--ease-elegant);
+  max-width: 85vw;
+  text-align: center;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   13a. TELAS DE BAIXA ALTURA (ex.: iPhone SE, Android compacto)
+   Reduz elementos decorativos para evitar sobreposição com a barra
+   de controles e a data no rodapé.
+-------------------------------------------------------------------------- */
+@media (max-height: 640px) {
+  .deco-balloon {
+    width: 14%;
+    bottom: 24%;
+  }
+
+  .frame-bottom {
+    bottom: calc(var(--safe-bottom) + 112px);
+  }
+
+  .frame-title {
+    font-size: 1.7rem;
+  }
+
+  .controls-bar {
+    bottom: calc(var(--safe-bottom) + 1.4rem);
+    gap: 2rem;
+  }
+
+  .btn-capture {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. RESPONSIVIDADE — TABLET E DESKTOP
+-------------------------------------------------------------------------- */
+@media (min-width: 700px) {
+  #stage,
+  #result-screen {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.25);
+  }
+
+  #loading-screen,
+  #permission-screen {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  body {
+    background: var(--color-ink);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. ACESSIBILIDADE — MOVIMENTO REDUZIDO
+-------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
